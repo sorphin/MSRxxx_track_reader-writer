@@ -312,7 +312,7 @@ if __name__ == "__main__":
     args = parser.parse_args();
     
     if (args.read or args.erase) and len(args.data) != 0 or args.write and (len(args.data) != len(args.tracks)):
-        print "too many arguments"
+        print("too many arguments")
         parser.print_help()
         exit(1)
     
@@ -356,17 +356,17 @@ if __name__ == "__main__":
                 line = "%d=%s" % (num, s)
                 if len(s) != l: line += " (+%d null)" % (l-len(s))
                 if lerr: line += " (LRC error)"
-                print line
-                if -1 != perr.find("^"): print "  %s <- parity errors" % perr
+                print(line)
+                if -1 != perr.find("^"): print("  %s <- parity errors" % perr)
             if tracks[0]: print_result(1, msr.unpack_raw(s1, msr.track1_map,  6, bpc1))
             if tracks[1]: print_result(2, msr.unpack_raw(s2, msr.track23_map, 4, bpc2))
             if tracks[2]: print_result(3, msr.unpack_raw(s3, msr.track23_map, 4, bpc3))
         
         elif args.read: # iso mode
             s1,s2,s3 = dev.read_tracks()
-            if tracks[0]: print "1=%s" % s1
-            if tracks[1]: print "2=%s" % s2
-            if tracks[2]: print "3=%s" % s3
+            if tracks[0]: print("1=%s" % s1)
+            if tracks[1]: print("2=%s" % s2)
+            if tracks[2]: print("3=%s" % s3)
         
         elif args.write & args.raw:
             d1 = ""
@@ -396,4 +396,4 @@ if __name__ == "__main__":
             dev.set_bpi(bpi1,bpi2,bpi3)
         
     except Exception as e:
-        print e
+        print(e)
